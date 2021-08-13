@@ -11,17 +11,17 @@ namespace DesafioTotvs.Domain.Repositories
     {
        IUnitOfWork UnitOfWork { get; }
 
-        void Add(Vehicle Vehicle);
+        void Add(Vehicle vehicle);
 
-        void AddRange(IEnumerable<Vehicle> Vehicles);
+        void AddRange(IEnumerable<Vehicle> vehicles);
 
-        void Remove(Guid id);
+        void Remove(Vehicle vehicle);
 
-        void RemoveRange(IEnumerable<Guid> Vehicles);
+        void RemoveRange(IEnumerable<Vehicle> vehicles);
 
-        void Update(Vehicle Vehicle);
+        void Update(Vehicle vehicle);
 
-        Task<Vehicle> GetVehicleByIdAsync(Guid VehicleId, CancellationToken cancellationToken = default);
+        Task<Vehicle> GetVehicleByIdAsync(Guid vehicleId, CancellationToken cancellationToken = default);
 
         Task<Vehicle> GetVehicleByNameAsync(string name, CancellationToken cancellationToken = default);
         

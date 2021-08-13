@@ -26,13 +26,6 @@ namespace DesafioTotvs.Application.AutoFac
                 LoadModules(builder, assembly);
             }
             
-            builder.Register<ServiceFactory>(context =>
-            {
-                var component = context.Resolve<IComponentContext>();
-
-                return type => component.TryResolve(type, out var obj) ? obj : null;
-            });
-
             // builder.RegisterGeneric(typeof(LoggingBehaviour<,>)).As(typeof(IPipelineBehavior<,>));
 
             builder.RegisterGeneric(typeof(ValidationBehaviour<,>)).As(typeof(IPipelineBehavior<,>));
@@ -45,11 +38,6 @@ namespace DesafioTotvs.Application.AutoFac
             AssemblyScanner.FindValidatorsInAssembly(assembly)
                 .ForEach(scannedAssembly => builder.RegisterType(scannedAssembly.ValidatorType).As(scannedAssembly.InterfaceType).InstancePerLifetimeScope());
                 
-            builder.RegisterType<Mediator>().As<IMediator>().AsImplementedInterfaces();
-            
-            builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(IRequestHandler<,>));
-
-            builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(INotificationHandler<>));
         }
     }
 }

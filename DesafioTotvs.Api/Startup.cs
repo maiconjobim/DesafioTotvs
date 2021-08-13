@@ -7,6 +7,7 @@ using DesafioTotvs.Api.Extentions;
 using DesafioTotvs.Application.AutoFac;
 using DesafioTotvs.Application.AutoMapper;
 using DesafioTotvs.Application.Serilog;
+using DesafioTotvs.Infrastructure.EntityFramework.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +43,7 @@ namespace DesafioTotvs.Api
             services
               .ConfigureSerilog(Configuration)
               .AddAutoMapperFromAssemblies(ApplicationAssembly)
+              .AddVehicleDbContext(Configuration)
               .ConfigureSwaggerGen()
               .AddControllers();
         }
@@ -49,7 +51,7 @@ namespace DesafioTotvs.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Docker")
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
