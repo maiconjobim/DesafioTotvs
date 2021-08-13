@@ -5,6 +5,6 @@ namespace DesafioTotvs.Domain.UnitOfWork
 {
     public interface IUnitOfWork
     {
-      Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default);
+        Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -9,7 +9,7 @@ namespace DesafioTotvs.Domain.Repositories
 {
     public interface IVehicleRepository
     {
-       IUnitOfWork UnitOfWork { get; }
+        IUnitOfWork UnitOfWork { get; }
 
         void Add(Vehicle vehicle);
 
@@ -24,10 +24,10 @@ namespace DesafioTotvs.Domain.Repositories
         Task<Vehicle> GetVehicleByIdAsync(Guid vehicleId, CancellationToken cancellationToken = default);
 
         Task<Vehicle> GetVehicleByNameAsync(string name, CancellationToken cancellationToken = default);
-        
+
         Task<IEnumerable<Vehicle>> GetVehiclesAsync(CancellationToken cancellationToken = default);
-        
+
         //Task<IEnumerable<>> GetRankedVehiclesByFuelComsumptionAsync(decimal fuelPrice , decimal totalCityKm,decimal totalHighwayKm ,CancellationToken cancellationToken = default);
-         
+
     }
 }

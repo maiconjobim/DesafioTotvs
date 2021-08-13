@@ -33,7 +33,6 @@ consideração o valor gasto com combustível.O retorno deverá ter os seguintes
 
 Para rodar esse projeto é necessário ter instalado
 
-- **.NET 5 SDK**
 - **Docker**
 
 
@@ -45,4 +44,11 @@ git clone https://github.com/maiconjobim/DesafioTotvs.git
 cd DesafioTotvs
 
 docker-compose up -d
+```
+Agora você pode acessar a segunite URL para ver a documentação feita com o Swagger
+  http://localhost:5101/swagger
+
+## Start Tests 
+```
+dotnet test
 ```
