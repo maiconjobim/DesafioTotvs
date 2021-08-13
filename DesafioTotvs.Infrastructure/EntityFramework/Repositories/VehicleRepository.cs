@@ -5,51 +5,61 @@ using System.Threading.Tasks;
 using DesafioTotvs.Domain.Entities;
 using DesafioTotvs.Domain.Repositories;
 using DesafioTotvs.Domain.UnitOfWork;
+using DesafioTotvs.Infrastructure.EntityFramework.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesafioTotvs.Infrastructure.EntityFramework.Repositories
 {
   public class VehicleRepository : IVehicleRepository
   {
-    public IUnitOfWork UnitOfWork => throw new NotImplementedException();
+     private readonly VehicleDbContext _context;
+     public IUnitOfWork UnitOfWork => _context;
 
-    public void Add(Vehicle Vehicle)
+    public VehicleRepository(VehicleDbContext context)
     {
-      throw new NotImplementedException();
+      _context = context;
     }
 
-    public void AddRange(IEnumerable<Vehicle> Vehicles)
+    public void Add(Vehicle vehicle)
     {
-      throw new NotImplementedException();
+      _context.Set<Vehicle>().Add(vehicle);
     }
 
-    public Task<Vehicle> GetVehicleByIdAsync(Guid VehicleId, CancellationToken cancellationToken = default)
+    public void AddRange(IEnumerable<Vehicle> vehicles)
     {
-      throw new NotImplementedException();
+      _context.Set<Vehicle>().AddRange(vehicles);
     }
 
-    public Task<Vehicle> GetVehicleByNameAsync(string name, CancellationToken cancellationToken = default)
+    public async Task<Vehicle> GetVehicleByIdAsync(Guid vehicleId, CancellationToken cancellationToken = default)
     {
-      throw new NotImplementedException();
+      return await _context.Set<Vehicle>()
+                .FirstOrDefaultAsync(vehicle => vehicle.Id == vehicleId, cancellationToken: cancellationToken);
     }
 
-    public Task<IEnumerable<Vehicle>> GetVehiclesAsync(CancellationToken cancellationToken = default)
+    public async Task<Vehicle> GetVehicleByNameAsync(string name, CancellationToken cancellationToken = default)
     {
-      throw new NotImplementedException();
+      return await _context.Set<Vehicle>()
+                .FirstOrDefaultAsync(vehicle => vehicle.Name == name, cancellationToken: cancellationToken);
     }
 
-    public void Remove(Guid id)
+    public async Task<IEnumerable<Vehicle>> GetVehiclesAsync(CancellationToken cancellationToken = default)
     {
-      throw new NotImplementedException();
+      return await _context.Set<Vehicle>().ToListAsync(cancellationToken);
     }
 
-    public void RemoveRange(IEnumerable<Guid> Vehicles)
+    public void Remove(Vehicle vehicle)
     {
-      throw new NotImplementedException();
+      _context.Set<Vehicle>().Remove(vehicle);
+    }
+
+    public void RemoveRange(IEnumerable<Vehicle> Vehicles)
+    {
+      _context.Set<Vehicle>().RemoveRange(Vehicles);
     }
 
     public void Update(Vehicle Vehicle)
     {
-      throw new NotImplementedException();
+      _context.Set<Vehicle>().Update(Vehicle);
     }
   }
 }

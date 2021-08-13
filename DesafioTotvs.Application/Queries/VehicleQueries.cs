@@ -45,10 +45,23 @@ namespace DesafioTotvs.Application.Queries
       return rankedVehiclesModel.OrderBy(x => x.FuelTotalValueSpent);
     }
 
-    public async Task<IEnumerable<VehicleModel>> Vehicles()
+    public async Task<Response> VehicleById(Guid id)
+    {
+      var vehicle = await _vehicleRepository.GetVehicleByIdAsync(id);
+      
+      return new Response(_mapper.Map<VehicleModel>(vehicle));
+    }
+
+    public async Task<Response> VehicleByName(string name)
+    {
+       var vehicle = await _vehicleRepository.GetVehicleByNameAsync(name);
+       return new Response(_mapper.Map<VehicleModel>(vehicle));
+    }
+
+    public async Task<Response> Vehicles()
     {
       var vehicles = await _vehicleRepository.GetVehiclesAsync();
-      return _mapper.Map<IEnumerable<VehicleModel>>(vehicles);
+      return new Response(_mapper.Map<IEnumerable<VehicleModel>>(vehicles));
     }
   }
 }

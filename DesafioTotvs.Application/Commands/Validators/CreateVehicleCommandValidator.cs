@@ -30,15 +30,15 @@ namespace DesafioTotvs.Application.Commands.Validators
             
             base.RuleFor(x => x.Vehicle.AverageFuelConsumptionCity)
               .GreaterThan(0)
-              .WithMessage("AverageFuelConsumptionCity is required");
+              .WithMessage("AverageFuelConsumptionCity needs to be Greater than zero");
             
             base.RuleFor(x => x.Vehicle.AverageFuelConsumptionHighway)
               .GreaterThan(0)
-              .WithMessage("AverageFuelConsumptionHighway is required");
+              .WithMessage("AverageFuelConsumptionHighway needs to be Greater than zero");
             
             base.RuleFor(x => x.Vehicle.ManufacturingDate)
               .LessThanOrEqualTo(DateTime.Now)
-              .WithMessage("AverageFuelConsumptionHighway is required");
+              .WithMessage("ManufacturingDate needs to be less or equals today");
         }
     }
 }
