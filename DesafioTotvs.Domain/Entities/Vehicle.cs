@@ -23,44 +23,44 @@ namespace DesafioTotvs.Domain.Entities
          decimal averageFuelConsumptionCity,
          decimal averageFuelConsumptionHighway)
         {
-          Name = name;
-          Brand = brand;
-          Model = model;
-          ManufacturingDate = manufacturingDate;
-          AverageFuelConsumptionCity = averageFuelConsumptionCity;
-          AverageFuelConsumptionHighway = averageFuelConsumptionHighway;
+            Name = name;
+            Brand = brand;
+            Model = model;
+            ManufacturingDate = manufacturingDate;
+            AverageFuelConsumptionCity = averageFuelConsumptionCity;
+            AverageFuelConsumptionHighway = averageFuelConsumptionHighway;
         }
 
-        public Vehicle Rename(string name) 
+        public Vehicle Rename(string name)
         {
-          Name = name;
-          return this;
+            Name = name;
+            return this;
         }
-        public Vehicle FromBrand(string brand) 
+        public Vehicle FromBrand(string brand)
         {
-          Brand = brand;
-          return this;
+            Brand = brand;
+            return this;
         }
 
-        public Vehicle WithModel(string model) 
+        public Vehicle WithModel(string model)
         {
-         Model = model;
-         return this;
+            Model = model;
+            return this;
         }
-        public Vehicle FromManufacturingDate(DateTime date) 
+        public Vehicle FromManufacturingDate(DateTime date)
         {
-         ManufacturingDate = date;
-         return this;
+            ManufacturingDate = date;
+            return this;
         }
-        public Vehicle ChangeCityAverageFuelConsumption(decimal average) 
+        public Vehicle ChangeCityAverageFuelConsumption(decimal average)
         {
-         AverageFuelConsumptionCity = average;
-         return this;
+            AverageFuelConsumptionCity = average;
+            return this;
         }
-        public Vehicle ChangeHighwayAverageFuelConsumption(decimal average) 
+        public Vehicle ChangeHighwayAverageFuelConsumption(decimal average)
         {
-         AverageFuelConsumptionHighway = average;
-         return this;
+            AverageFuelConsumptionHighway = average;
+            return this;
         }
     }
 }

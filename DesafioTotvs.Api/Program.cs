@@ -14,24 +14,24 @@ namespace DesafioTotvs.Api
 {
     public class Program
     {
-        public  static void Main(string[] args)
+        public static void Main(string[] args)
         {
-          try
-          {
-            var host = CreateHostBuilder(args).Build();
-            
-            host.Services.MigrateDbContextAsync();
-            
-            host.Run();
-          }
-          catch (Exception exception)
-          {
-            Log.Logger.Fatal(exception, "Host terminated unexpectedly.");
-          }
-          finally
-          {
-            Log.CloseAndFlush();
-          }
+            try
+            {
+                var host = CreateHostBuilder(args).Build();
+
+                host.Services.MigrateDbContextAsync();
+
+                host.Run();
+            }
+            catch (Exception exception)
+            {
+                Log.Logger.Fatal(exception, "Host terminated unexpectedly.");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
