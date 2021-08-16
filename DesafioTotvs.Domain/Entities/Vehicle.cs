@@ -62,5 +62,22 @@ namespace DesafioTotvs.Domain.Entities
             AverageFuelConsumptionHighway = average;
             return this;
         }
+        public decimal CalculateFuelQuantitySpent(decimal fuelPrice, decimal totalKmInCity, decimal totalKmInHighway)
+        {
+            var totalFuelSpentInCity = totalKmInCity / AverageFuelConsumptionCity;
+            var totalFuelSpentInHighway = totalKmInHighway / AverageFuelConsumptionHighway;
+            var totalFuelSpent = totalFuelSpentInCity + totalFuelSpentInHighway;
+            return Math.Round(totalFuelSpent,4);
+        }
+        public decimal CalculateFuelTotalValueSpent(decimal fuelPrice, decimal totalKmInCity, decimal totalKmInHighway)
+        {
+            var totalFuelSpentInCity = totalKmInCity / AverageFuelConsumptionCity;
+            var totalFuelSpentInHighway = totalKmInHighway / AverageFuelConsumptionHighway;
+            var totalFuelSpent = totalFuelSpentInCity + totalFuelSpentInHighway;
+            var fuelTotalValueSpent = fuelPrice * totalFuelSpent;
+            return Math.Round(fuelTotalValueSpent,4);
+        }
+
+
     }
 }
