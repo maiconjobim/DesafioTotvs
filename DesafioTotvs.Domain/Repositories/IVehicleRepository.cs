@@ -27,7 +27,5 @@ namespace DesafioTotvs.Domain.Repositories
 
         Task<IEnumerable<Vehicle>> GetVehiclesAsync(CancellationToken cancellationToken = default);
 
-        //Task<IEnumerable<>> GetRankedVehiclesByFuelComsumptionAsync(decimal fuelPrice , decimal totalCityKm,decimal totalHighwayKm ,CancellationToken cancellationToken = default);
-
     }
 }

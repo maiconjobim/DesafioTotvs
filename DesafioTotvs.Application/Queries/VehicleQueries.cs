@@ -26,10 +26,6 @@ namespace DesafioTotvs.Application.Queries
       var rankedVehiclesModel = new List<RankedVehiclesModel>();
       foreach (var vehicle in vehicles)
       {
-        var totalFuelSpentInCity = totalKmInCity / vehicle.AverageFuelConsumptionCity;
-        var totalFuelSpentInHighway = totalKmInHighway / vehicle.AverageFuelConsumptionHighway;
-        var totalFuelSpent = totalFuelSpentInCity + totalFuelSpentInHighway;
-        var fuelTotalValueSpent = fuelPrice * totalFuelSpent;
         rankedVehiclesModel.Add(new RankedVehiclesModel
         {
           Id = vehicle.Id,
@@ -37,8 +33,8 @@ namespace DesafioTotvs.Application.Queries
           Brand = vehicle.Brand,
           Model = vehicle.Model,
           Year = vehicle.ManufacturingDate.ToString("yyyy"),
-          FuelQuantitySpent = Math.Round(totalFuelSpent,4),
-          FuelTotalValueSpent = Math.Round(fuelTotalValueSpent,4)
+          FuelQuantitySpent = vehicle.CalculateFuelQuantitySpent(fuelPrice,totalKmInCity,totalKmInHighway),
+          FuelTotalValueSpent = vehicle.CalculateFuelTotalValueSpent(fuelPrice,totalKmInCity,totalKmInHighway)
         });
       }
 
