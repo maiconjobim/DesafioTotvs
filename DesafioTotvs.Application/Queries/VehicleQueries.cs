@@ -22,23 +22,13 @@ namespace DesafioTotvs.Application.Queries
 
     public async Task<IEnumerable<RankedVehiclesModel>> RankedVehiclesQuery(decimal fuelPrice, decimal totalKmInCity, decimal totalKmInHighway)
     {
-      var vehicles = await _vehicleRepository.GetVehiclesAsync();
-      var rankedVehiclesModel = new List<RankedVehiclesModel>();
-      foreach (var vehicle in vehicles)
-      {
-        rankedVehiclesModel.Add(new RankedVehiclesModel
-        {
-          Id = vehicle.Id,
-          Name = vehicle.Name,
-          Brand = vehicle.Brand,
-          Model = vehicle.Model,
-          Year = vehicle.ManufacturingDate.ToString("yyyy"),
-          FuelQuantitySpent = vehicle.CalculateFuelQuantitySpent(fuelPrice,totalKmInCity,totalKmInHighway),
-          FuelTotalValueSpent = vehicle.CalculateFuelTotalValueSpent(fuelPrice,totalKmInCity,totalKmInHighway)
-        });
-      }
+        var vehicles = await _vehicleRepository.GetVehiclesAsync();
 
-      return rankedVehiclesModel.OrderBy(x => x.FuelTotalValueSpent);
+        var rankedVehicleModels = vehicles
+            .ToRankedVehiclesModels(fuelPrice, totalKmInCity, totalKmInHighway)
+            .OrderBy(rankedVehiclesModel => rankedVehiclesModel.FuelTotalValueSpent);
+            
+        return rankedVehicleModels;
     }
 
     public async Task<Response> VehicleById(Guid id)

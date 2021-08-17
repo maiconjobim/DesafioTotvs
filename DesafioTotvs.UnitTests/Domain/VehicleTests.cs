@@ -30,14 +30,14 @@ namespace DesafioTotvs.UnitTests.Domain
         }
 
         [Theory]
-        [InlineData(6, 11, 10, 2)]
-        [InlineData(3, 11, 10, 2)]
-        [InlineData(5.90, 22, 20, 4)]
-        public void ShouldBeCorrectCalculateFuelQuantitySpent(decimal fuelPrice, decimal totalKmInCity, decimal totalKmInHighway, decimal fuelQuantitySpent)
+        [InlineData(11, 10, 2)]
+        [InlineData(11, 10, 2)]
+        [InlineData(22, 20, 4)]
+        public void ShouldBeCorrectCalculateFuelQuantitySpent(decimal totalKmInCity, decimal totalKmInHighway, decimal fuelQuantitySpent)
         {
             var vehicles = new Vehicle("camaro amarelo", "ford", "camaro", DateTime.Now, 11, 10);
 
-            vehicles.CalculateFuelQuantitySpent(fuelPrice, totalKmInCity, totalKmInHighway).Should().Be(fuelQuantitySpent);
+            vehicles.CalculateFuelQuantitySpent(totalKmInCity, totalKmInHighway).Should().Be(fuelQuantitySpent);
         }
 
         [Theory]
