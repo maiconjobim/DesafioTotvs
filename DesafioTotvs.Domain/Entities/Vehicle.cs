@@ -71,11 +71,8 @@ namespace DesafioTotvs.Domain.Entities
         }
         public decimal CalculateFuelTotalValueSpent(decimal fuelPrice, decimal totalKmInCity, decimal totalKmInHighway)
         {
-            var totalFuelSpentInCity = totalKmInCity / AverageFuelConsumptionCity;
-            var totalFuelSpentInHighway = totalKmInHighway / AverageFuelConsumptionHighway;
-            var totalFuelSpent = totalFuelSpentInCity + totalFuelSpentInHighway;
-            var fuelTotalValueSpent = fuelPrice * totalFuelSpent;
-            return Math.Round(fuelTotalValueSpent,4);
+            var totalFuelSpent = CalculateFuelQuantitySpent(totalKmInCity,totalKmInHighway);
+            return Math.Round(totalFuelSpent * fuelPrice,4);
         }
 
 
