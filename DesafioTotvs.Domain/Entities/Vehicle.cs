@@ -62,7 +62,7 @@ namespace DesafioTotvs.Domain.Entities
             AverageFuelConsumptionHighway = average;
             return this;
         }
-        public decimal CalculateFuelQuantitySpent(decimal fuelPrice, decimal totalKmInCity, decimal totalKmInHighway)
+        public decimal CalculateFuelQuantitySpent(decimal totalKmInCity, decimal totalKmInHighway)
         {
             var totalFuelSpentInCity = totalKmInCity / AverageFuelConsumptionCity;
             var totalFuelSpentInHighway = totalKmInHighway / AverageFuelConsumptionHighway;
